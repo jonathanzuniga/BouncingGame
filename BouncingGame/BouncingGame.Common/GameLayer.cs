@@ -22,17 +22,17 @@ namespace BouncingGame
 			// "paddle" refers to the paddle.png image
 			paddleSprite = new CCSprite ("paddle");
 			paddleSprite.PositionX = 100;
-			paddleSprite.PositionY = 100;
+			paddleSprite.PositionY = 600;
 			AddChild (paddleSprite);
 
 			ballSprite = new CCSprite ("ball");
 			ballSprite.PositionX = 320;
-			ballSprite.PositionY = 1080;
+			ballSprite.PositionY = 1920;
 			AddChild (ballSprite);
 
 			scoreLabel = new CCLabel ("Score: 0", "arial", 22, CCLabelFormat.SpriteFont);
 			scoreLabel.PositionX = 50;
-			scoreLabel.PositionY = 1000;
+			scoreLabel.PositionY = 1880;
 			scoreLabel.AnchorPoint = CCPoint.AnchorUpperLeft;
 			AddChild (scoreLabel);
 
@@ -57,8 +57,8 @@ namespace BouncingGame
 				ballYVelocity *= -1;
 
 				// Then let's assign a random value to the ball's x velocity:
-				const float minXVelocity = -1300;
-				const float maxXVelocity = 1300;
+				const float minXVelocity = -600;
+				const float maxXVelocity = 600;
 
 				ballXVelocity = CCRandom.GetRandomFloat (minXVelocity, maxXVelocity);
 				score++;
