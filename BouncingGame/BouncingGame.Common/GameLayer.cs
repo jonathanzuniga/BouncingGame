@@ -14,20 +14,20 @@ namespace BouncingGame
 		float ballXVelocity;
 		float ballYVelocity;
 		// How much to modify the ball's y velocity per second:
-		const float gravity = 700;
+		const float gravity = 1400;
 		int score;
 
 		public GameLayer ()
 		{
-			// "paddle" refers to the paddle.png image
+			// "paddle" refers to the paddle.png image.
 			paddleSprite = new CCSprite ("paddle");
-			paddleSprite.PositionX = 100;
+			paddleSprite.PositionX = 320;
 			paddleSprite.PositionY = 100;
 			AddChild (paddleSprite);
 
 			ballSprite = new CCSprite ("ball");
 			ballSprite.PositionX = 320;
-			ballSprite.PositionY = 1080;
+			ballSprite.PositionY = 1024;
 			AddChild (ballSprite);
 
 			scoreLabel = new CCLabel ("Score: 0", "arial", 22, CCLabelFormat.SpriteFont);
@@ -41,7 +41,7 @@ namespace BouncingGame
 
 		void RunGameLogic(float frameTimeInSeconds)
 		{
-			// This is a linear approximation, so not 100% accurate
+			// This is a linear approximation, so not 100% accurate.
 			ballYVelocity += frameTimeInSeconds * -gravity;
 			ballSprite.PositionX += ballXVelocity * frameTimeInSeconds;
 			ballSprite.PositionY += ballYVelocity * frameTimeInSeconds;
@@ -57,8 +57,8 @@ namespace BouncingGame
 				ballYVelocity *= -1;
 
 				// Then let's assign a random value to the ball's x velocity:
-				const float minXVelocity = -1300;
-				const float maxXVelocity = 1300;
+				const float minXVelocity = -1200;
+				const float maxXVelocity = 1200;
 
 				ballXVelocity = CCRandom.GetRandomFloat (minXVelocity, maxXVelocity);
 				score++;
@@ -76,7 +76,7 @@ namespace BouncingGame
 			// First let’s get the ball position:   
 			float ballRight = ballSprite.BoundingBoxTransformedToParent.MaxX;
 			float ballLeft = ballSprite.BoundingBoxTransformedToParent.MinX;
-			// Then let’s get the screen edges
+			// Then let’s get the screen edges.
 			float screenRight = VisibleBoundsWorldspace.MaxX;
 			float screenLeft = VisibleBoundsWorldspace.MinX;
 			// Check if the ball is either too far to the right or left:    
@@ -101,10 +101,10 @@ namespace BouncingGame
 		{
 			base.AddedToScene ();
 
-			// Use the bounds to layout the positioning of our drawable assets
+			// Use the bounds to layout the positioning of our drawable assets.
 			CCRect bounds = VisibleBoundsWorldspace;
 
-			// Register for touch events
+			// Register for touch events.
 			var touchListener = new CCEventListenerTouchAllAtOnce ();
 
 			touchListener.OnTouchesEnded = OnTouchesEnded;
@@ -124,7 +124,7 @@ namespace BouncingGame
 		void OnTouchesEnded (List<CCTouch> touches, CCEvent touchEvent)
 		{
 			if (touches.Count > 0) {
-				// Perform touch handling here
+				// Perform touch handling here.
 			}
 		}
 	}
