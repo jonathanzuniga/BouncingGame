@@ -16,8 +16,8 @@ namespace BouncingGame
 
 			CCSize windowSize = mainWindow.WindowSizeInPixels;
 
-			float desiredHeight = 1024.0f;
-			float desiredWidth = 768.0f;
+			float desiredHeight = 512.0f;
+			float desiredWidth = 384.0f;
             
 			// This will set the world bounds to be (0,0, w, h).
 			// CCSceneResolutionPolicy.ShowAll will ensure that the aspect ratio is preserved.

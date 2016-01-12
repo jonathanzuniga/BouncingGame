@@ -9,32 +9,38 @@ namespace BouncingGame
 	{
 		CCSprite paddleSprite;
 		CCSprite ballSprite;
-		CCLabel scoreLabel;
+		CCLabel scoreLabel, highestScoreLabel;
 
 		float ballXVelocity;
 		float ballYVelocity;
 		// How much to modify the ball's y velocity per second:
-		const float gravity = 1400;
-		int score;
+		const float gravity = 700;
+		int score, highestScore;
 
 		public GameLayer ()
 		{
 			// "paddle" refers to the paddle.png image.
 			paddleSprite = new CCSprite ("paddle");
-			paddleSprite.PositionX = 320;
+			paddleSprite.PositionX = 180;
 			paddleSprite.PositionY = 100;
 			AddChild (paddleSprite);
 
 			ballSprite = new CCSprite ("ball");
-			ballSprite.PositionX = 320;
-			ballSprite.PositionY = 1024;
+			ballSprite.PositionX = 180;
+			ballSprite.PositionY = 600;
 			AddChild (ballSprite);
 
-			scoreLabel = new CCLabel ("Score: 0", "arial", 22, CCLabelFormat.SpriteFont);
+			scoreLabel = new CCLabel ("Score: 0", "arial", 28, CCLabelFormat.SystemFont);
 			scoreLabel.PositionX = 50;
-			scoreLabel.PositionY = 1000;
+			scoreLabel.PositionY = 480;
 			scoreLabel.AnchorPoint = CCPoint.AnchorUpperLeft;
 			AddChild (scoreLabel);
+
+			highestScoreLabel = new CCLabel ("Highest Score: 0", "arial", 28, CCLabelFormat.SystemFont);
+			highestScoreLabel.PositionX = 50;
+			highestScoreLabel.PositionY = 500;
+			highestScoreLabel.AnchorPoint = CCPoint.AnchorUpperLeft;
+			AddChild (highestScoreLabel);
 
 			Schedule (RunGameLogic);
 		}
@@ -57,8 +63,8 @@ namespace BouncingGame
 				ballYVelocity *= -1;
 
 				// Then let's assign a random value to the ball's x velocity:
-				const float minXVelocity = -1200;
-				const float maxXVelocity = 1200;
+				const float minXVelocity = -600;
+				const float maxXVelocity = 600;
 
 				ballXVelocity = CCRandom.GetRandomFloat (minXVelocity, maxXVelocity);
 				score++;
@@ -90,6 +96,11 @@ namespace BouncingGame
 
 			if (ballSprite.PositionY < VisibleBoundsWorldspace.MinY) {
 				ballSprite.PositionY = VisibleBoundsWorldspace.MaxY;
+				if (highestScore < score) {
+					highestScore = score;
+					highestScoreLabel.Text = "Highest Score: " + highestScore;
+				}
+
 				score = 0;
 				scoreLabel.Text = "Score: 0";
 				ballXVelocity = 0;

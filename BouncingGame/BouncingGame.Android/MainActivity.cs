@@ -16,7 +16,7 @@ namespace BouncingGame
 		AlwaysRetainTaskState = true,
 		Icon = "@drawable/icon",
 		Theme = "@android:style/Theme.NoTitleBar",
-		ScreenOrientation = ScreenOrientation.Portrait | ScreenOrientation.ReversePortrait,
+		ScreenOrientation = ScreenOrientation.Portrait,
 		LaunchMode = LaunchMode.SingleInstance,
 		MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)
